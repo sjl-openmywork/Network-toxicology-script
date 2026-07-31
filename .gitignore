@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# 运行时数据
+chrome_user_data/
+superpred_results/
+chembl_results/
+targetnet_results/
+
+# 系统文件
+*.log
+.DS_Store
+Thumbs.db
+
+# 配置文件
+*.env
+config.json

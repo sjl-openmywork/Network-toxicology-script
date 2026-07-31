@@ -1,0 +1,28 @@
+# ====================================
+# 网络药理学/毒理学 脚本依赖清单
+# pip install -r requirements.txt
+# ====================================
+
+# ── 核心网络请求 ──
+requests
+
+# ── Excel 读写 ──
+openpyxl
+pandas
+
+# ── 浏览器自动化（SuperPred / SwissTargetPrediction） ──
+playwright
+selenium
+webdriver-manager
+
+# ── HTML 解析（TargetNet） ──
+beautifulsoup4
+
+# ── 终端彩色输出（TargetNet） ──
+colorama
+
+# ── 化学计算（分子属性 / SMILES 验证） ──
+rdkit
+
+# ── 可选：MOL2 格式输出（计算化学_小分子处理.py） ──
+openbabel-wheel

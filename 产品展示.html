@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>网络药理学脚本套件</title>
+<style>
+@page { size: A4; margin: 0; }
+@media print {
+  html, body { width: 210mm; height: 297mm; overflow: hidden; }
+  .page { box-shadow: none; }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:  #1e40af;
+  --teal:  #0d9488;
+  --purple:#7c3aed;
+  --text:  #1e293b;
+}
+
+body {
+  font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
+  background: #e2e8f0;
+  display: flex; justify-content: center; align-items: center;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  width: 794px; height: 1123px;
+  background: #fff;
+  padding: 32px 36px 28px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.12);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+
+/* ── Header ── */
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 3px solid #e2e8f0;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+.header-left h1 {
+  font-size: 1.5rem; font-weight: 900; color: var(--text);
+  letter-spacing: .02em;
+}
+.header-left .sub {
+  font-size: .72rem; color: #64748b; margin-top: 2px;
+}
+.header-right {
+  display: flex; gap: 6px; flex-shrink: 0;
+}
+.header-right .box {
+  text-align: center;
+  background: #f1f5f9; border-radius: 8px; padding: 6px 12px;
+}
+.header-right .box .n {
+  font-size: 1.4rem; font-weight: 900;
+}
+.header-right .box .l {
+  font-size: .6rem; color: #64748b; margin-top: -2px;
+}
+.box.b1 .n { color: var(--blue); }
+.box.b2 .n { color: var(--teal); }
+.box.b3 .n { color: var(--purple); }
+
+/* ── Section Title ── */
+.sec-tit {
+  font-size: .82rem; font-weight: 800; color: #64748b;
+  margin: 10px 0 7px; letter-spacing: .04em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.sec-tit .badge {
+  display: inline-block; font-size: .62rem; padding: 1px 8px;
+  border-radius: 4px; color: #fff; margin-left: 6px;
+}
+.sec-tit .badge.db  { background: var(--blue); }
+.sec-tit .badge.pred { background: var(--teal); }
+.sec-tit .badge.calc { background: var(--purple); }
+
+/* ── Cards Grid ── */
+.cards {
+  display: grid; gap: 8px;
+  flex-shrink: 0;
+}
+.cards.col4 { grid-template-columns: repeat(4, 1fr); }
+.cards.col3 { grid-template-columns: repeat(3, 1fr); }
+.cards.col1 { grid-template-columns: 1fr; }
+
+.card {
+  background: #f8fafc;
+  border-left: 3px solid #e2e8f0;
+  border-radius: 0 8px 8px 0;
+  padding: 8px 10px;
+  font-size: .66rem; line-height: 1.42;
+  transition: background .15s;
+}
+.card:hover { background: #f1f5f9; }
+.card.db   { border-left-color: var(--blue); }
+.card.pred { border-left-color: var(--teal); }
+.card.calc { border-left-color: var(--purple); }
+
+.card .num {
+  display: inline-block; width: 18px; height: 18px; line-height: 18px;
+  text-align: center; border-radius: 4px;
+  font-size: .62rem; font-weight: 900; color: #fff;
+  margin-right: 4px; vertical-align: middle;
+}
+.card.db   .num { background: var(--blue); }
+.card.pred .num { background: var(--teal); }
+.card.calc .num { background: var(--purple); }
+
+.card .cname {
+  font-weight: 700; color: var(--text);
+  vertical-align: middle;
+}
+.card .file {
+  font-size: .6rem; color: #94a3b8;
+  font-family: "SF Mono","Consolas",monospace;
+  margin-left: 6px;
+}
+.card .info { margin-top: 3px; color: #475569; }
+.card .info b { color: var(--text); }
+
+/* ── Table ── */
+.tbl-wrap { flex-shrink: 0; }
+table {
+  width: 100%; border-collapse: collapse; font-size: .64rem;
+}
+thead { background: #f1f5f9; }
+th {
+  text-align: left; padding: 5px 8px; font-weight: 700;
+  color: #64748b; font-size: .6rem; letter-spacing: .03em;
+}
+td { padding: 4px 8px; border-top: 1px solid #f1f5f9; }
+tbody tr:hover { background: #f8fafc; }
+
+.tag {
+  display: inline-block; font-size: .56rem; font-weight: 700;
+  padding: 1px 6px; border-radius: 3px;
+}
+.tag-db   { background: #dbeafe; color: #1e40af; }
+.tag-pred { background: #ccfbf1; color: #0f766e; }
+.tag-calc { background: #ede9fe; color: #6b21a8; }
+
+/* ── Bottom ── */
+.bottom {
+  display: flex; gap: 14px; margin-top: auto;
+  padding-top: 10px; border-top: 2px solid #f1f5f9;
+  flex-shrink: 0;
+}
+.bottom .blk { flex: 1; }
+.bottom h4 {
+  font-size: .72rem; font-weight: 700; margin-bottom: 5px; color: #475569;
+}
+.bottom p, .bottom li {
+  font-size: .63rem; color: #64748b; line-height: 1.5;
+}
+.bottom ol { padding-left: 16px; }
+.bottom code {
+  background: #f1f5f9; padding: 1px 5px; border-radius: 3px;
+  font-family: "SF Mono","Consolas",monospace; font-size: .6rem;
+  color: #1e293b;
+}
+.bottom .req {
+  display: grid; grid-template-columns: auto 1fr; gap: 1px 8px;
+}
+.bottom .req dt { font-weight: 600; color: #475569; }
+.notice {
+  background: #fffbeb; border-left: 3px solid #d97706;
+  border-radius: 0 6px 6px 0; padding: 6px 10px;
+  font-size: .6rem; color: #92400e; line-height: 1.5;
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<!-- ── Header ── -->
+<div class="header">
+  <div class="header-left">
+    <h1>网络药理学 · 毒理学 脚本套件</h1>
+    <p class="sub">终端交互式 · 零编程基础上手 · 结果一键导出 Excel</p>
+  </div>
+  <div class="header-right">
+    <div class="box b1"><div class="n">4</div><div class="l">疾病→靶点</div></div>
+    <div class="box b2"><div class="n">4</div><div class="l">化合物→靶点</div></div>
+    <div class="box b3"><div class="n">1</div><div class="l">分子处理</div></div>
+  </div>
+</div>
+
+<!-- ── Section 1: 疾病 → 靶点 ── -->
+<div class="sec-tit">🔍 疾病 → 靶点检索 <span class="badge db">4 款 · REST / GraphQL API 实时检索</span></div>
+<div class="cards col4">
+  <div class="card db">
+    <span class="num">①</span><span class="cname">TTD 疾病靶点</span><span class="file">TTP.py</span>
+    <p class="info"><b>源：</b>TTD 治疗靶点数据库<br><b>入：</b>疾病名 / ICD-11 编码<br><b>特色：</b>基本(秒级) + 详细(UniProt/染色体/功能)双模式</p>
+  </div>
+  <div class="card db">
+    <span class="num">②</span><span class="cname">DisGeNET 疾病靶点</span><span class="file">disgenet.py</span>
+    <p class="info"><b>源：</b>DisGeNET<br><b>入：</b>疾病名 / UMLS / MONDO 等<br><b>特色：</b>多评分(score/DSI/DPI/pLI/EI) · DO & MONDO 本体 · UMLS 交叉映射</p>
+  </div>
+  <div class="card db">
+    <span class="num">③</span><span class="cname">Open Targets 平台</span><span class="file">open_targets.py</span>
+    <p class="info"><b>源：</b>Open Targets (GraphQL)<br><b>入：</b>疾病名(中英文)<br><b>特色：</b>8 维证据(遗传/突变/RNA/通路/药物/动物/文献/临床) · 批量</p>
+  </div>
+  <div class="card db">
+    <span class="num">④</span><span class="cname">PharmGKB 基因搜索</span><span class="file">pharmgkb.py</span>
+    <p class="info"><b>源：</b>PharmGKB (NIH)<br><b>入：</b>疾病/药物关键词<br><b>特色：</b>全量自动翻页 · 智能去重 · 重试+速率控制</p>
+  </div>
+</div>
+
+<!-- ── Section 2: 化合物 → 靶点 ── -->
+<div class="sec-tit">🎯 化合物 → 靶点预测 <span class="badge pred">4 款 · 活性数据检索 + AI 平台预测</span></div>
+<div class="cards col4">
+  <div class="card pred">
+    <span class="num">⑤</span><span class="cname">ChEMBL 靶点检索</span><span class="file">chembl_*.py</span>
+    <p class="info"><b>源：</b>ChEMBL (EMBL-EBI) 活性数据库<br><b>入：</b>SMILES / 名称(自动识别)<br><b>特色：</b>精确/相似/子结构 3 模式 · 8 线程 · 活性阈值 · 物种过滤 · GUI 选列</p>
+  </div>
+  <div class="card pred">
+    <span class="num">⑥</span><span class="cname">SuperPred</span><span class="file">superpred.py</span>
+    <p class="info"><b>平台：</b>Charité 医学院(德)<br><b>入：</b>SMILES · 支持 Excel 批量<br><b>特色：</b>Playwright/Selenium 双引擎 · 防封 · 5 内置示例 · GUI 选列</p>
+  </div>
+  <div class="card pred">
+    <span class="num">⑦</span><span class="cname">SwissTargetPrediction</span><span class="file">swiss_target_*.py</span>
+    <p class="info"><b>平台：</b>SIB 瑞士生物信息所<br><b>入：</b>Excel/CSV 含 SMILES 列<br><b>特色：</b>7 步向导 · RDKit SMILES 预检 · 3 物种 · 防封 · 指数退避</p>
+  </div>
+  <div class="card pred">
+    <span class="num">⑧</span><span class="cname">TargetNet QSAR</span><span class="file">targetnet_interactive.py</span>
+    <p class="info"><b>平台：</b>中南大学<br><b>入：</b>SMILES / .smi / Excel<br><b>特色：</b>7 指纹 · 4 指标 · 快速/手动双模式 · 自动分批(>15 拆分)</p>
+  </div>
+</div>
+
+<!-- ── Section 3: 分子处理 ── -->
+<div class="sec-tit">🧪 分子结构处理 <span class="badge calc">1 款 · 纯本地计算，无需网络</span></div>
+<div class="cards col1">
+  <div class="card calc">
+    <span class="num">⑨</span><span class="cname">计算化学·小分子处理</span><span class="file">计算化学_小分子处理.py</span>
+    <p class="info"><b>引擎：</b>RDKit + OpenBabel · 无需网络 &nbsp; <b>输入：</b>Excel/SDF/MOL/MOL2/PDB · 支持文件夹批量 &nbsp; <b>核心：</b>10 种官能团识别 · ETKDGv3 3D 生成 · MMFF/UFF 力场优化 · Morgan 指纹 · Tanimoto 相似性矩阵 &nbsp; <b>输出：</b>SDF/MOL/PDB/MOL2 + 属性 Excel + 相似性矩阵 Excel</p>
+  </div>
+</div>
+
+<!-- ── 速查总览 ── -->
+<div class="sec-tit">📊 速查总览</div>
+<div class="tbl-wrap">
+  <table>
+    <thead><tr><th>#</th><th>脚本</th><th>类别</th><th>输入</th><th>数据源/平台</th><th>核心特色</th></tr></thead>
+    <tbody>
+      <tr><td>①</td><td>TTP.py</td><td><span class="tag tag-db">疾病→靶点</span></td><td>疾病名</td><td>TTD</td><td>双模式·秒级</td></tr>
+      <tr><td>②</td><td>disgenet.py</td><td><span class="tag tag-db">疾病→靶点</span></td><td>疾病名/ID</td><td>DisGeNET</td><td>多评分·本体下载</td></tr>
+      <tr><td>③</td><td>open_targets.py</td><td><span class="tag tag-db">疾病→靶点</span></td><td>疾病名</td><td>Open Targets</td><td>8维证据·批量</td></tr>
+      <tr><td>④</td><td>pharmgkb.py</td><td><span class="tag tag-db">疾病→靶点</span></td><td>疾病/药物名</td><td>PharmGKB</td><td>全量抓取·去重</td></tr>
+      <tr><td>⑤</td><td>chembl_*.py</td><td><span class="tag tag-pred">化合物→靶点</span></td><td>SMILES/名称</td><td>ChEMBL</td><td>3模式·8线程</td></tr>
+      <tr><td>⑥</td><td>superpred.py</td><td><span class="tag tag-pred">化合物→靶点</span></td><td>SMILES</td><td>SuperPred</td><td>双引擎·防封</td></tr>
+      <tr><td>⑦</td><td>swiss_target_*.py</td><td><span class="tag tag-pred">化合物→靶点</span></td><td>Excel/CSV</td><td>SwissTarget</td><td>7步向导·预检</td></tr>
+      <tr><td>⑧</td><td>targetnet_*.py</td><td><span class="tag tag-pred">化合物→靶点</span></td><td>SMILES/.smi</td><td>TargetNet</td><td>7指纹·自动分批</td></tr>
+      <tr><td>⑨</td><td>计算化学_*.py</td><td><span class="tag tag-calc">分子处理</span></td><td>多格式文件</td><td>RDKit+OB</td><td>全属性·3D·矩阵</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ── 底部 ── -->
+<div class="bottom">
+  <div class="blk">
+    <h4>🚀 快速开始</h4>
+    <ol>
+      <li>安装 <code>Python 3.9+</code></li>
+      <li>双击 <code>一键安装依赖.bat</code></li>
+      <li>运行 <code>python 脚本名.py</code></li>
+    </ol>
+  </div>
+  <div class="blk">
+    <h4>⚙️ 环境要求</h4>
+    <div class="req">
+      <dt>系统</dt><dd>Windows 10/11 64位</dd>
+      <dt>Python</dt><dd>3.9+</dd>
+      <dt>磁盘</dt><dd>~500 MB</dd>
+      <dt>交付</dt><dd>9×.py + requirements + 一键安装.bat</dd>
+    </div>
+  </div>
+  <div class="blk">
+    <h4>⚠ 注意事项</h4>
+    <div class="notice">
+      ② disgenet 需免费学术 API Key（内置申请引导）· ⑥⑦ 依赖国外网站在线 · ⑨ MOL2 需 OpenBabel（无则回退 SDF）
+    </div>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>
