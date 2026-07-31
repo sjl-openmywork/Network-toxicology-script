@@ -7,10 +7,11 @@ dist/
 build/
 
 # 运行时数据
-chrome_user_data/
-superpred_results/
-chembl_results/
-targetnet_results/
+**/chrome_user_data/
+**/superpred_results/
+**/chembl_results/
+**/targetnet_results/
+**/.disgenet_key
 
 # 系统文件
 *.log
@@ -20,3 +21,4 @@ Thumbs.db
 # 配置文件
 *.env
 config.json
+**/targetnet_presets.json

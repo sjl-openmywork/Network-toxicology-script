@@ -6,19 +6,27 @@
 
 ---
 
-## 脚本清单
+## 项目结构
 
-| # | 脚本 | 功能 | 分类 |
-|---|------|------|------|
-| 1 | `TTP.py` | TTD 疾病靶点搜索 | 数据库查询 |
-| 2 | `chembl_target_search_interactive.py` | ChEMBL 化合物靶点检索 | 数据库查询 |
-| 3 | `disgenet.py` | DisGeNET 疾病靶点检索 | 数据库查询 |
-| 4 | `open_targets.py` | Open Targets 疾病靶点检索 | 数据库查询 |
-| 5 | `pharmgkb.py` | PharmGKB 基因靶点搜索 | 数据库查询 |
-| 6 | `superpred.py` | SuperPred AI 靶点预测 | AI 预测 |
-| 7 | `swiss_target_prediction_gui.py` | SwissTargetPrediction 靶点预测 | AI 预测 |
-| 8 | `targetnet_interactive.py` | TargetNet QSAR 靶点预测 | AI 预测 |
-| 9 | `计算化学_小分子处理.py` | 分子属性计算 & 结构处理 | 本地计算 |
+```
+├── 01_数据库查询/                      # 5 款 — 数据库 API 靶点查询
+│   ├── TTP.py                          # ① TTD 疾病靶点搜索
+│   ├── chembl_target_search_interactive.py  # ② ChEMBL 化合物靶点检索
+│   ├── disgenet.py                     # ③ DisGeNET 疾病靶点检索
+│   ├── open_targets.py                 # ④ Open Targets 疾病靶点检索
+│   └── pharmgkb.py                     # ⑤ PharmGKB 基因靶点搜索
+├── 02_AI预测/                          # 3 款 — 浏览器自动化靶点预测
+│   ├── superpred.py                    # ⑥ SuperPred AI 靶点预测
+│   ├── swiss_target_prediction_gui.py  # ⑦ SwissTargetPrediction 靶点预测
+│   └── targetnet_interactive.py        # ⑧ TargetNet QSAR 靶点预测
+├── 03_分子处理/                        # 1 款 — 本地分子属性计算
+│   └── 计算化学_小分子处理.py           # ⑨ 分子属性计算 & 结构处理
+├── requirements.txt                    # 共享依赖清单
+├── 一键安装依赖.bat                     # 一键安装所有依赖
+├── 产品说明.md                          # 产品使用说明
+├── 产品展示.html                        # 产品展示页面
+└── README.md                           # 本文件
+```
 
 ---
 
@@ -44,9 +52,9 @@ playwright install chromium
 ### 运行脚本
 
 ```bash
-python TTP.py
-python chembl_target_search_interactive.py
-python disgenet.py
+python 01_数据库查询/TTP.py
+python 01_数据库查询/chembl_target_search_interactive.py
+python 02_AI预测/superpred.py
 ```
 
 所有脚本均采用终端交互菜单，按提示操作即可。
@@ -55,7 +63,7 @@ python disgenet.py
 
 ## 脚本详情
 
-### 一、数据库查询类（5 款）
+### 一、数据库查询类（5 款） — `01_数据库查询/`
 
 #### 1. TTD 疾病靶点搜索 — `TTP.py`
 
@@ -103,7 +111,7 @@ python disgenet.py
 | 输出 | Excel (.xlsx)，基因符号列表 |
 | 亮点 | 自动读取总数 · 智能翻页 · 请求重试与速率控制 · 去重排序 |
 
-### 二、AI 靶点预测类（3 款）
+### 二、AI 靶点预测类（3 款） — `02_AI预测/`
 
 通过浏览器自动化，将化合物 SMILES 提交至 AI 预测平台，自动解析结果。
 
@@ -134,7 +142,7 @@ python disgenet.py
 | 输出 | 每个化合物单独 CSV + 合并 Excel（csv/xlsx/txt 可选） |
 | 亮点 | 7 种分子指纹可选 · 4 种筛选指标 + 可调阈值 · 快速/手动双模式 · 智能自动分批 · GUI 弹窗选列 |
 
-### 三、分子处理类（1 款）
+### 三、分子处理类（1 款） — `03_分子处理/`
 
 #### 9. 计算化学·小分子处理工具 — `计算化学_小分子处理.py`
 
