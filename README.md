@@ -1,6 +1,10 @@
 # 网络毒理学靶点预测脚本套件
 
-一站式网络毒理学/药理学研究工具集，覆盖 5 大权威数据库靶点查询 + 3 大 AI 平台靶点预测 + 分子属性计算与结构处理。
+<p align="center">
+  <img src="产品展示预览.png" alt="产品展示预览" width="720">
+</p>
+
+一站式网络毒理学/药理学研究工具集，覆盖 4 大权威数据库靶点查询 + 4 大化合物靶点检索/预测平台 + 分子属性计算与结构处理。
 
 终端交互式操作，零编程基础上手，结果一键导出 Excel。
 
@@ -9,23 +13,23 @@
 ## 项目结构
 
 ```
-├── 01_数据库查询/                      # 5 款 — 数据库 API 靶点查询
-│   ├── TTP.py                          # ① TTD 疾病靶点搜索
-│   ├── chembl_target_search_interactive.py  # ② ChEMBL 化合物靶点检索
-│   ├── disgenet.py                     # ③ DisGeNET 疾病靶点检索
-│   ├── open_targets.py                 # ④ Open Targets 疾病靶点检索
-│   └── pharmgkb.py                     # ⑤ PharmGKB 基因靶点搜索
-├── 02_AI预测/                          # 3 款 — 浏览器自动化靶点预测
-│   ├── superpred.py                    # ⑥ SuperPred AI 靶点预测
-│   ├── swiss_target_prediction_gui.py  # ⑦ SwissTargetPrediction 靶点预测
-│   └── targetnet_interactive.py        # ⑧ TargetNet QSAR 靶点预测
-├── 03_分子处理/                        # 1 款 — 本地分子属性计算
-│   └── 计算化学_小分子处理.py           # ⑨ 分子属性计算 & 结构处理
-├── requirements.txt                    # 共享依赖清单
-├── 一键安装依赖.bat                     # 一键安装所有依赖
-├── 产品说明.md                          # 产品使用说明
-├── 产品展示.html                        # 产品展示页面
-└── README.md                           # 本文件
+├── 疾病靶点/                              # 4 款 — 疾病名称 → 靶点查询
+│   ├── TTP.py                             # ① TTD 疾病靶点搜索
+│   ├── disgenet.py                        # ② DisGeNET 疾病靶点检索
+│   ├── open_targets.py                    # ③ Open Targets 疾病靶点检索
+│   └── pharmgkb.py                        # ④ PharmGKB 基因靶点搜索
+├── 分子靶点/                              # 4 款 — 化合物结构 → 靶点预测
+│   ├── chembl_target_search_interactive.py  # ⑤ ChEMBL 化合物靶点检索
+│   ├── superpred.py                       # ⑥ SuperPred AI 靶点预测
+│   ├── swiss_target_prediction_gui.py     # ⑦ SwissTargetPrediction 靶点预测
+│   └── targetnet_interactive.py           # ⑧ TargetNet QSAR 靶点预测
+├── 分子处理/                              # 1 款 — 本地分子属性计算
+│   └── 计算化学_小分子处理.py              # ⑨ 分子属性计算 & 结构处理
+├── requirements.txt                       # 共享依赖清单
+├── 一键安装依赖.bat                        # 一键安装所有依赖
+├── 产品展示.html                           # 产品展示页面
+├── 产品展示预览.png                        # 产品展示预览图
+└── README.md                              # 本文件
 ```
 
 ---
@@ -52,9 +56,9 @@ playwright install chromium
 ### 运行脚本
 
 ```bash
-python 01_数据库查询/TTP.py
-python 01_数据库查询/chembl_target_search_interactive.py
-python 02_AI预测/superpred.py
+python 疾病靶点/TTP.py
+python 分子靶点/chembl_target_search_interactive.py
+python 分子靶点/superpred.py
 ```
 
 所有脚本均采用终端交互菜单，按提示操作即可。
@@ -63,7 +67,9 @@ python 02_AI预测/superpred.py
 
 ## 脚本详情
 
-### 一、数据库查询类（5 款） — `01_数据库查询/`
+### 一、疾病靶点类（4 款） — `疾病靶点/`
+
+输入疾病名称，从权威数据库查询关联靶点。
 
 #### 1. TTD 疾病靶点搜索 — `TTP.py`
 
@@ -74,16 +80,7 @@ python 02_AI预测/superpred.py
 | 输出 | Excel (.xlsx)，含靶点 ID、基因名、相关疾病、代表药物 |
 | 亮点 | 基本模式（秒级）与详细模式（含 UniProt/染色体位置/功能描述） |
 
-#### 2. ChEMBL 化合物靶点检索 — `chembl_target_search_interactive.py`
-
-| 项目 | 说明 |
-|------|------|
-| 数据源 | ChEMBL (EMBL-EBI) — 全球最大开源生物活性数据库 |
-| 输入 | SMILES 结构式 或 化合物名称（自动识别） |
-| 输出 | 合并 Excel + 每个化合物单独 CSV |
-| 亮点 | 3 种搜索模式（精确/相似/子结构）· 8 线程并发获取基因详情 · 可设活性阈值与物种过滤 · Excel/CSV 批量输入 + GUI 弹窗选列 |
-
-#### 3. DisGeNET 疾病靶点检索 — `disgenet.py`
+#### 2. DisGeNET 疾病靶点检索 — `disgenet.py`
 
 | 项目 | 说明 |
 |------|------|
@@ -93,7 +90,7 @@ python 02_AI预测/superpred.py
 | 亮点 | 专业评分体系（score/DSI/DPI/pLI/EI）· 可下载全部疾病列表（≤10,000 条）· 独有 Disease Ontology & MONDO 本体下载 |
 | 注意 | 需申请 DisGeNET 免费学术 API Key（脚本内置申请引导） |
 
-#### 4. Open Targets 疾病靶点检索 — `open_targets.py`
+#### 3. Open Targets 疾病靶点检索 — `open_targets.py`
 
 | 项目 | 说明 |
 |------|------|
@@ -102,7 +99,7 @@ python 02_AI预测/superpred.py
 | 输出 | Excel (.xlsx)，含 3 个 Sheet，每种证据类型独立成列 |
 | 亮点 | 8 维度证据评分（遗传关联/体细胞突变/RNA 表达/通路/已知药物/动物模型/文献/临床）· 多疾病批量查询 · 12 种常见疾病快捷入口 |
 
-#### 5. PharmGKB 基因靶点搜索 — `pharmgkb.py`
+#### 4. PharmGKB 基因靶点搜索 — `pharmgkb.py`
 
 | 项目 | 说明 |
 |------|------|
@@ -111,9 +108,18 @@ python 02_AI预测/superpred.py
 | 输出 | Excel (.xlsx)，基因符号列表 |
 | 亮点 | 自动读取总数 · 智能翻页 · 请求重试与速率控制 · 去重排序 |
 
-### 二、AI 靶点预测类（3 款） — `02_AI预测/`
+### 二、分子靶点类（4 款） — `分子靶点/`
 
-通过浏览器自动化，将化合物 SMILES 提交至 AI 预测平台，自动解析结果。
+输入化合物结构，通过数据库活性数据或 AI 平台预测靶点。
+
+#### 5. ChEMBL 化合物靶点检索 — `chembl_target_search_interactive.py`
+
+| 项目 | 说明 |
+|------|------|
+| 数据源 | ChEMBL (EMBL-EBI) — 全球最大开源生物活性数据库 |
+| 输入 | SMILES 结构式 或 化合物名称（自动识别） |
+| 输出 | 合并 Excel + 每个化合物单独 CSV |
+| 亮点 | 3 种搜索模式（精确/相似/子结构）· 8 线程并发获取基因详情 · 可设活性阈值与物种过滤 · Excel/CSV 批量输入 + GUI 弹窗选列 |
 
 #### 6. SuperPred 靶点预测 — `superpred.py`
 
@@ -142,7 +148,7 @@ python 02_AI预测/superpred.py
 | 输出 | 每个化合物单独 CSV + 合并 Excel（csv/xlsx/txt 可选） |
 | 亮点 | 7 种分子指纹可选 · 4 种筛选指标 + 可调阈值 · 快速/手动双模式 · 智能自动分批 · GUI 弹窗选列 |
 
-### 三、分子处理类（1 款） — `03_分子处理/`
+### 三、分子处理类（1 款） — `分子处理/`
 
 #### 9. 计算化学·小分子处理工具 — `计算化学_小分子处理.py`
 
@@ -160,7 +166,7 @@ python 02_AI预测/superpred.py
 1. **disgenet.py** 首次运行需申请 DisGeNET 免费学术 API Key（脚本内置引导流程，审核通常 2-7 天）
 2. **superpred.py** 和 **swiss_target_prediction_gui.py** 依赖国外网站在线可用，建议在网络稳定环境下使用；内置防封机制可一定程度规避限流
 3. **计算化学_小分子处理.py** 的 MOL2 格式输出依赖 OpenBabel（`pip install openbabel-wheel`），若未安装会自动回退到 SDF
-4. 批量预测类脚本（2/6/7/8）建议按推荐间隔运行，避免对服务器造成压力
+4. 批量预测类脚本（5/6/7/8）建议按推荐间隔运行，避免对服务器造成压力
 
 ---
 
