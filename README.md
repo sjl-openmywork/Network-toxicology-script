@@ -70,6 +70,7 @@ python 分子靶点/SuperPred_靶点预测.py
 | 项目 | 说明 |
 |------|------|
 | 数据源 | TTD (Therapeutic Target Database) — 全球最大的治疗靶点数据库 |
+| 网址 | [https://db.idrblab.net/ttd/](https://db.idrblab.net/ttd/) |
 | 输入 | 疾病英文名称（如 Alzheimer、Diabetes）或 ICD-11 编码 |
 | 输出 | Excel (.xlsx)，含靶点 ID、基因名、相关疾病、代表药物 |
 | 亮点 | 基本模式（秒级）与详细模式（含 UniProt/染色体位置/功能描述） |
@@ -79,6 +80,7 @@ python 分子靶点/SuperPred_靶点预测.py
 | 项目 | 说明 |
 |------|------|
 | 数据源 | DisGeNET — 全球最大的基因-疾病关联知识平台 |
+| 网址 | [https://disgenet.com](https://disgenet.com) |
 | 输入 | 疾病英文名称 或 疾病 ID（UMLS/MONDO/OMIM/MeSH 等） |
 | 输出 | Excel (.xlsx)，含 3 个 Sheet（基因疾病关联/TOP100/汇总统计） |
 | 亮点 | 专业评分体系（score/DSI/DPI/pLI/EI）· 可下载全部疾病列表（≤10,000 条）· 独有 Disease Ontology & MONDO 本体下载 |
@@ -89,6 +91,7 @@ python 分子靶点/SuperPred_靶点预测.py
 | 项目 | 说明 |
 |------|------|
 | 数据源 | Open Targets Platform (EMBL-EBI + GSK + Sanger 等联合项目) |
+| 网址 | [https://platform.opentargets.org/](https://platform.opentargets.org/) |
 | 输入 | 疾病名称（支持中英文）或疾病 ID（MONDO/EFO） |
 | 输出 | Excel (.xlsx)，含 3 个 Sheet，每种证据类型独立成列 |
 | 亮点 | 8 维度证据评分（遗传关联/体细胞突变/RNA 表达/通路/已知药物/动物模型/文献/临床）· 多疾病批量查询 · 12 种常见疾病快捷入口 |
@@ -98,6 +101,7 @@ python 分子靶点/SuperPred_靶点预测.py
 | 项目 | 说明 |
 |------|------|
 | 数据源 | PharmGKB (NIH 资助) — 药物基因组学权威数据库 |
+| 网址 | [https://www.pharmgkb.org/](https://www.pharmgkb.org/) |
 | 输入 | 疾病或药物关键词（如 Diabetes、Aspirin） |
 | 输出 | Excel (.xlsx)，基因符号列表 |
 | 亮点 | 自动读取总数 · 智能翻页 · 请求重试与速率控制 · 去重排序 |
@@ -111,6 +115,7 @@ python 分子靶点/SuperPred_靶点预测.py
 | 项目 | 说明 |
 |------|------|
 | 数据源 | ChEMBL (EMBL-EBI) — 全球最大开源生物活性数据库 |
+| 网址 | [https://www.ebi.ac.uk/chembl/](https://www.ebi.ac.uk/chembl/) |
 | 输入 | SMILES 结构式 或 化合物名称（自动识别） |
 | 输出 | 合并 Excel + 每个化合物单独 CSV |
 | 亮点 | 3 种搜索模式（精确/相似/子结构）· 8 线程并发获取基因详情 · 可设活性阈值与物种过滤 · Excel/CSV 批量输入 + GUI 弹窗选列 |
@@ -120,6 +125,7 @@ python 分子靶点/SuperPred_靶点预测.py
 | 项目 | 说明 |
 |------|------|
 | 平台 | SuperPred (德国 Charité 医学院) — 基于机器学习的靶点预测 |
+| 网址 | [https://prediction.charite.de/](https://prediction.charite.de/) |
 | 输入 | 化合物 SMILES（支持单化合物/Excel 批量/CSV 批量） |
 | 输出 | 每个化合物单独 CSV + 合并 Excel + 汇总报告 + 失败列表 |
 | 亮点 | Playwright / Selenium 双引擎 · GUI 弹窗选列 · JS API + DOM 双路径结果提取 · 防封机制 · 5 个内置化合物快速体验 |
@@ -129,6 +135,7 @@ python 分子靶点/SuperPred_靶点预测.py
 | 项目 | 说明 |
 |------|------|
 | 平台 | SwissTargetPrediction (瑞士生物信息学研究所 SIB) — 高精度靶点预测 |
+| 网址 | [http://www.swisstargetprediction.ch/](http://www.swisstargetprediction.ch/) |
 | 输入 | Excel (.xlsx) 或 CSV 文件，含 SMILES 列 |
 | 输出 | 每个化合物单独 CSV + 合并 Excel + 汇总报告 |
 | 亮点 | 7 步交互式配置向导 · RDKit SMILES 合法性预检 · 人/小鼠/大鼠 3 物种 · 强大防封机制 |
@@ -138,6 +145,7 @@ python 分子靶点/SuperPred_靶点预测.py
 | 项目 | 说明 |
 |------|------|
 | 平台 | TargetNet (中南大学) — 基于 QSAR 模型的靶点预测 |
+| 网址 | [http://targetnet.scbdd.com/](http://targetnet.scbdd.com/) |
 | 输入 | SMILES 字符串 或 .smi 文件 或 Excel 文件 |
 | 输出 | 每个化合物单独 CSV + 合并 Excel（csv/xlsx/txt 可选） |
 | 亮点 | 7 种分子指纹可选 · 4 种筛选指标 + 可调阈值 · 快速/手动双模式 · 智能自动分批 · GUI 弹窗选列 |
