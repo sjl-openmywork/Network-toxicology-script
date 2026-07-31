@@ -15,11 +15,11 @@ SuperPred 靶点预测 — 交互式自动化脚本（一体版）v2.0
   playwright install chromium
 
 运行:
-  python superpred.py              交互模式
-  python superpred.py --show       交互 + 显示浏览器窗口
-  python superpred.py demo         快速演示（内置化合物）
-  python superpred.py file.xlsx    直接用Excel/CSV批量预测（Playwright）
-  python superpred.py file.csv -e selenium  用Selenium引擎
+  python SuperPred_靶点预测.py              交互模式
+  python SuperPred_靶点预测.py --show       交互 + 显示浏览器窗口
+  python SuperPred_靶点预测.py demo         快速演示（内置化合物）
+  python SuperPred_靶点预测.py file.xlsx    直接用Excel/CSV批量预测（Playwright）
+  python SuperPred_靶点预测.py file.csv -e selenium  用Selenium引擎
 """
 
 import os, sys, csv, re, time, json

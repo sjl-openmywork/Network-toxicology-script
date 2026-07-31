@@ -10,7 +10,7 @@ SwissTargetPrediction 交互式自动化化合物靶点预测
   5. 每个化合物生成单独的 Excel 文件 + 合并汇总文件
 
 使用方法：
-  python swiss_target_prediction_gui.py
+  python SwissTarget_靶点预测.py
 
 依赖安装：
   pip install playwright openpyxl pandas

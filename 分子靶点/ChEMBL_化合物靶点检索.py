@@ -11,7 +11,7 @@ activity 数据自带 target_pref_name，基因详情可选且并发获取。
   - 输出默认存入 chembl_results 文件夹（可自定义）
   - 批量检索后自动生成合并表格 + 单个化合物结果
 
-直接运行：python chembl_target_search_interactive.py
+直接运行：python ChEMBL_化合物靶点检索.py
 """
 
 import requests

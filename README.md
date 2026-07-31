@@ -14,20 +14,19 @@
 
 ```
 ├── 疾病靶点/                              # 4 款 — 疾病名称 → 靶点查询
-│   ├── TTP.py                             # ① TTD 疾病靶点搜索
-│   ├── disgenet.py                        # ② DisGeNET 疾病靶点检索
-│   ├── open_targets.py                    # ③ Open Targets 疾病靶点检索
-│   └── pharmgkb.py                        # ④ PharmGKB 基因靶点搜索
+│   ├── TTD_疾病靶点搜索.py                 # ① TTD 疾病靶点搜索
+│   ├── DisGeNET_疾病靶点检索.py            # ② DisGeNET 疾病靶点检索
+│   ├── OpenTargets_疾病靶点检索.py          # ③ Open Targets 疾病靶点检索
+│   └── PharmGKB_基因靶点搜索.py            # ④ PharmGKB 基因靶点搜索
 ├── 分子靶点/                              # 4 款 — 化合物结构 → 靶点预测
-│   ├── chembl_target_search_interactive.py  # ⑤ ChEMBL 化合物靶点检索
-│   ├── superpred.py                       # ⑥ SuperPred AI 靶点预测
-│   ├── swiss_target_prediction_gui.py     # ⑦ SwissTargetPrediction 靶点预测
-│   └── targetnet_interactive.py           # ⑧ TargetNet QSAR 靶点预测
+│   ├── ChEMBL_化合物靶点检索.py            # ⑤ ChEMBL 化合物靶点检索
+│   ├── SuperPred_靶点预测.py               # ⑥ SuperPred AI 靶点预测
+│   ├── SwissTarget_靶点预测.py             # ⑦ SwissTargetPrediction 靶点预测
+│   └── TargetNet_靶点预测.py               # ⑧ TargetNet QSAR 靶点预测
 ├── 分子处理/                              # 1 款 — 本地分子属性计算
-│   └── 计算化学_小分子处理.py              # ⑨ 分子属性计算 & 结构处理
+│   └── 小分子结构处理工具.py                # ⑨ 分子属性计算 & 结构处理
 ├── requirements.txt                       # 共享依赖清单
 ├── 一键安装依赖.bat                        # 一键安装所有依赖
-├── 产品展示.html                           # 产品展示页面
 ├── 产品展示预览.png                        # 产品展示预览图
 └── README.md                              # 本文件
 ```
@@ -56,9 +55,9 @@ playwright install chromium
 ### 运行脚本
 
 ```bash
-python 疾病靶点/TTP.py
-python 分子靶点/chembl_target_search_interactive.py
-python 分子靶点/superpred.py
+python 疾病靶点/TTD_疾病靶点搜索.py
+python 分子靶点/ChEMBL_化合物靶点检索.py
+python 分子靶点/SuperPred_靶点预测.py
 ```
 
 所有脚本均采用终端交互菜单，按提示操作即可。
@@ -71,7 +70,7 @@ python 分子靶点/superpred.py
 
 输入疾病名称，从权威数据库查询关联靶点。
 
-#### 1. TTD 疾病靶点搜索 — `TTP.py`
+#### 1. TTD 疾病靶点搜索 — `TTD_疾病靶点搜索.py`
 
 | 项目 | 说明 |
 |------|------|
@@ -80,7 +79,7 @@ python 分子靶点/superpred.py
 | 输出 | Excel (.xlsx)，含靶点 ID、基因名、相关疾病、代表药物 |
 | 亮点 | 基本模式（秒级）与详细模式（含 UniProt/染色体位置/功能描述） |
 
-#### 2. DisGeNET 疾病靶点检索 — `disgenet.py`
+#### 2. DisGeNET 疾病靶点检索 — `DisGeNET_疾病靶点检索.py`
 
 | 项目 | 说明 |
 |------|------|
@@ -90,7 +89,7 @@ python 分子靶点/superpred.py
 | 亮点 | 专业评分体系（score/DSI/DPI/pLI/EI）· 可下载全部疾病列表（≤10,000 条）· 独有 Disease Ontology & MONDO 本体下载 |
 | 注意 | 需申请 DisGeNET 免费学术 API Key（脚本内置申请引导） |
 
-#### 3. Open Targets 疾病靶点检索 — `open_targets.py`
+#### 3. Open Targets 疾病靶点检索 — `OpenTargets_疾病靶点检索.py`
 
 | 项目 | 说明 |
 |------|------|
@@ -99,7 +98,7 @@ python 分子靶点/superpred.py
 | 输出 | Excel (.xlsx)，含 3 个 Sheet，每种证据类型独立成列 |
 | 亮点 | 8 维度证据评分（遗传关联/体细胞突变/RNA 表达/通路/已知药物/动物模型/文献/临床）· 多疾病批量查询 · 12 种常见疾病快捷入口 |
 
-#### 4. PharmGKB 基因靶点搜索 — `pharmgkb.py`
+#### 4. PharmGKB 基因靶点搜索 — `PharmGKB_基因靶点搜索.py`
 
 | 项目 | 说明 |
 |------|------|
@@ -112,7 +111,7 @@ python 分子靶点/superpred.py
 
 输入化合物结构，通过数据库活性数据或 AI 平台预测靶点。
 
-#### 5. ChEMBL 化合物靶点检索 — `chembl_target_search_interactive.py`
+#### 5. ChEMBL 化合物靶点检索 — `ChEMBL_化合物靶点检索.py`
 
 | 项目 | 说明 |
 |------|------|
@@ -121,7 +120,7 @@ python 分子靶点/superpred.py
 | 输出 | 合并 Excel + 每个化合物单独 CSV |
 | 亮点 | 3 种搜索模式（精确/相似/子结构）· 8 线程并发获取基因详情 · 可设活性阈值与物种过滤 · Excel/CSV 批量输入 + GUI 弹窗选列 |
 
-#### 6. SuperPred 靶点预测 — `superpred.py`
+#### 6. SuperPred 靶点预测 — `SuperPred_靶点预测.py`
 
 | 项目 | 说明 |
 |------|------|
@@ -130,7 +129,7 @@ python 分子靶点/superpred.py
 | 输出 | 每个化合物单独 CSV + 合并 Excel + 汇总报告 + 失败列表 |
 | 亮点 | Playwright / Selenium 双引擎 · GUI 弹窗选列 · JS API + DOM 双路径结果提取 · 防封机制 · 5 个内置化合物快速体验 |
 
-#### 7. SwissTargetPrediction 自动化预测 — `swiss_target_prediction_gui.py`
+#### 7. SwissTargetPrediction 自动化预测 — `SwissTarget_靶点预测.py`
 
 | 项目 | 说明 |
 |------|------|
@@ -139,7 +138,7 @@ python 分子靶点/superpred.py
 | 输出 | 每个化合物单独 CSV + 合并 Excel + 汇总报告 |
 | 亮点 | 7 步交互式配置向导 · RDKit SMILES 合法性预检 · 人/小鼠/大鼠 3 物种 · 强大防封机制 |
 
-#### 8. TargetNet QSAR 靶点预测 — `targetnet_interactive.py`
+#### 8. TargetNet QSAR 靶点预测 — `TargetNet_靶点预测.py`
 
 | 项目 | 说明 |
 |------|------|
@@ -150,7 +149,7 @@ python 分子靶点/superpred.py
 
 ### 三、分子处理类（1 款） — `分子处理/`
 
-#### 9. 计算化学·小分子处理工具 — `计算化学_小分子处理.py`
+#### 9. 小分子结构处理工具 — `小分子结构处理工具.py`
 
 | 项目 | 说明 |
 |------|------|
@@ -163,9 +162,9 @@ python 分子靶点/superpred.py
 
 ## 注意事项
 
-1. **disgenet.py** 首次运行需申请 DisGeNET 免费学术 API Key（脚本内置引导流程，审核通常 2-7 天）
-2. **superpred.py** 和 **swiss_target_prediction_gui.py** 依赖国外网站在线可用，建议在网络稳定环境下使用；内置防封机制可一定程度规避限流
-3. **计算化学_小分子处理.py** 的 MOL2 格式输出依赖 OpenBabel（`pip install openbabel-wheel`），若未安装会自动回退到 SDF
+1. **DisGeNET_疾病靶点检索.py** 首次运行需申请 DisGeNET 免费学术 API Key（脚本内置申请引导，审核通常 2-7 天）
+2. **SuperPred_靶点预测.py** 和 **SwissTarget_靶点预测.py** 依赖国外网站在线可用，建议在网络稳定环境下使用；内置防封机制可一定程度规避限流
+3. **小分子结构处理工具.py** 的 MOL2 格式输出依赖 OpenBabel（`pip install openbabel-wheel`），若未安装会自动回退到 SDF
 4. 批量预测类脚本（5/6/7/8）建议按推荐间隔运行，避免对服务器造成压力
 
 ---
